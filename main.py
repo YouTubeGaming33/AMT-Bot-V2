@@ -4,7 +4,7 @@ from discord.ext import app_commands
 
 # Required DOTENV Library(s)
 import os
-from dotenv import load_dotenv()
+from dotenv import load_dotenv
 
 # Required Asyncio Library - Organisation 
 import asyncio

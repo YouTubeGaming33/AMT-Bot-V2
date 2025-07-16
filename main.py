@@ -11,7 +11,7 @@ import asyncio
 
 # Load Token and Specify Guild.
 load_dotenv()
-TOKEN = os.dotenv("DISCORD_TOKEN")
+TOKEN = os.getenv("DISCORD_TOKEN")
 GUILD_ID = discord.Object(id=925867675513659473)
 
 # Set Intents to .all - Allows for Use of All Intents without adding additional.

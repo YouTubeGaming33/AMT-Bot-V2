@@ -27,20 +27,14 @@ class Tickets(commands.Cog):
 
     @app_commands.command(name="open-ticket", description="Opens a Support Ticket")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
-    async def open_ticket(self, interaction: discord.Interaction, reason: str = None):
+    @app_commands.choices(platform=[app_commands.Choice(name="PCVR", value="Platform: PCVR"), app_commands.Choice(name="Standalone", value="Platform: Standalone")])
+    async def open_ticket(self, interaction: discord.Interaction, platform: app_commands.Choice[str], reason: str = None):
         await interaction.response.defer()
         guild = interaction.guild
         user = interaction.user
 
         LOG_CHANNEL_ID = 1030517102416773181
         LOG_CHANNEL = guild.get_channel(LOG_CHANNEL_ID)
-
-        if LOG_CHANNEL:
-            embed = discord.Embed(
-                title="",
-                description="",
-                colour=discord.Colour.purple()
-            )
 
         TICKET_CATEGORY_ID = 1294385317004050462
 
@@ -51,7 +45,7 @@ class Tickets(commands.Cog):
             return
 
 
-        existing = discord.utils.get(guild.text_channels, name=f"ticket={user.id}")
+        existing = discord.utils.get(guild.text_channels, name=f"{platform.value.replace('Platform: ', '').lower()}-{user.id}")
         if existing:
             await interaction.followup.send(f"You already have an Open Ticket: {existing.mention}", ephemeral=True)
             return
@@ -77,7 +71,7 @@ class Tickets(commands.Cog):
         )
 
         TICKET_CHANNEL = await guild.create_text_channel(
-            name=f"Ticket-{user.id}",
+            name=f"{platform.value.replace('Platform: ', '').lower()}-{user.id}",
             overwrites=overwrites,
             category=TICKET_CATEGORY,
             topic=reason if reason is not None else "No Reason Provided"
@@ -101,7 +95,7 @@ class Tickets(commands.Cog):
 
         if LOG_CHANNEL:
             LogEmbed = discord.Embed(
-                title=f"{interaction.user.id}",
+                title=f"{platform.value.replace('Platform: ', '').lower()}-{interaction.user.id}",
                 description=f"**New Ticket has been Opened by:** {interaction.user.mention}",
                 colour=discord.Colour.blurple()
             )

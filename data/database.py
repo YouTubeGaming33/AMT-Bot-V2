@@ -1,6 +1,8 @@
 import os
 from pymongo import MongoClient
 
+from datetime import datetime
+
 MONGO_URI = os.getenv("MONGO_URI")
 if not MONGO_URI:
     raise ValueError("No MongoDB URI found in environment variables")
@@ -8,6 +10,7 @@ if not MONGO_URI:
 client = MongoClient(MONGO_URI)
 db = client["test"]
 profiles_collection = db["profiles"]
+warnings_collection = db["warnings"]
 
 def get_profile(user_id: int):
     return profiles_collection.find_one({"User": str(user_id)})
@@ -32,3 +35,35 @@ def update_field(user_id: int, field: str, value):
         {"$set": {field: value}}
     )
     return result.modified_count > 0
+
+def insert_warning(guild_id, user_id, reason, moderator_id, warn_num, message_id=None, channel_id=None):
+    warning_data = {
+        "Guild": str(guild_id),
+        "User": str(user_id),
+        "Reason": reason,
+        "Moderator": str(moderator_id),
+        "WarnNum": warn_num,
+        "MessageId": str(message_id) if message_id else None,
+        "ChannelId": str(channel_id) if channel_id else None,
+        "Date": datetime.utcnow()
+    }
+    return warnings_collection.insert_one(warning_data)
+
+from pymongo import DESCENDING
+
+def get_warnings(guild_id: str, user_id: str):
+    return list(
+        warnings_collection.find({
+            "Guild": str(guild_id),
+            "User": str(user_id)
+        }).sort("Date", DESCENDING)
+    )
+
+
+def delete_warning(warn_num: str, guild_id: str):
+    result = warnings_collection.delete_one({
+        "WarnNum": warn_num,
+        "Guild": str(guild_id)
+    })
+    return result.deleted_count > 0
+

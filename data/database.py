@@ -11,6 +11,10 @@ client = MongoClient(MONGO_URI)
 db = client["test"]
 profiles_collection = db["profiles"]
 warnings_collection = db["warnings"]
+autoresponders_collection = db["auto-responders"]
+
+def responder(listener: str):
+    return autoresponders_collection.find_one({"Listener": str(listener)})
 
 def get_profile(user_id: int):
     return profiles_collection.find_one({"User": str(user_id)})

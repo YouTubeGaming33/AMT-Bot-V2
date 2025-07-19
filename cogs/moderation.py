@@ -3,8 +3,6 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 
-import asyncio
-
 import random
 import string
 
@@ -29,12 +27,46 @@ class Moderation(commands.Cog):
 
     def generate_warn_id(length=6):
         return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
+    
+    @app_commands.command(name="purge", description="Purge messages")
+    @app_commands.guilds(discord.Object(id=GUILD_ID))
+    @app_commands.describe(amount="Amount of Messages to Delete")
+    async def purge(self, interaction: discord.Interaction, amount: int):
+        await interaction.response.defer(ephemeral=True)
+
+        user_roles = [role.id for role in interaction.user.roles]
+        trial_admin_role = 935793809437098034
+        admin_role = 927724509522432031
+
+        if trial_admin_role not in user_roles and admin_role not in user_roles:
+            await interaction.followup.send("🚫 You don't have permission to use this command.", ephemeral=True)
+            return
+        
+        deleted = await interaction.channel.purge(limit=amount)
+        await interaction.followup.send(f"{len(deleted)} Messages Deleted", ephemeral=True)
 
     @app_commands.command(name="warnings", description="Check how many warnings a user has")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     @app_commands.describe(member="The member whose warnings you want to check")
     async def warnings(self, interaction: discord.Interaction, member: discord.Member):
         await interaction.response.defer(ephemeral=True)
+
+        user_roles = [role.id for role in interaction.user.roles]
+        trial_admin_role = 935793809437098034
+        admin_role = 927724509522432031
+
+        if trial_admin_role not in user_roles and admin_role not in user_roles:
+            await interaction.followup.send("🚫 You don't have permission to use this command.", ephemeral=True)
+            return
+
+        if member == interaction.user:
+            await interaction.followup.send("You can't view your own warnings.", ephemeral=True)
+            return
+
+        if member.top_role >= interaction.user.top_role:
+            await interaction.followup.send("You can't view someone with a higher or equal role.", ephemeral=True)
+            return
+
 
         warnings = get_warnings(str(interaction.guild.id), str(member.id))
         warning_count = len(warnings)
@@ -71,6 +103,7 @@ class Moderation(commands.Cog):
             )
 
         await interaction.followup.send(embed=embed, ephemeral=True)
+
     @app_commands.command(name="warn", description="Warn a user")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     async def warn(self, interaction: discord.Interaction, member: discord.Member, reason: str = None):

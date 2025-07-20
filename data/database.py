@@ -1,7 +1,10 @@
+import json
 import os
+import random
+
 from pymongo import MongoClient
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 MONGO_URI = os.getenv("MONGO_URI")
 if not MONGO_URI:
@@ -71,3 +74,56 @@ def delete_warning(warn_num: str, guild_id: str):
     })
     return result.deleted_count > 0
 
+DAILY_MISSION_FILE = "data/missions.json"
+WEEKLY_MISSION_FILE = "data/weeklymissions.json"
+USER_DATA_FILE = "data/user_missions.json"
+
+def load_json(path):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"[ERROR] Failed to load {path}: {e}")
+        return []
+
+def save_json(path, data):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, default=str)
+
+
+def can_claim(last_time: str, cooldown_hours: int) -> bool:
+    last_dt = datetime.fromisoformat(last_time)
+    return datetime.utcnow() >= last_dt + timedelta(hours=cooldown_hours)
+
+def assign_missions(user_id: str):
+    user_data = {}
+
+    if os.path.exists(USER_DATA_FILE):
+        user_data = load_json(USER_DATA_FILE)
+
+    if user_id not in user_data:
+        user_data[user_id] = {}
+
+    daily_pool = load_json(DAILY_MISSION_FILE)
+    weekly_pool = load_json(WEEKLY_MISSION_FILE)
+
+    user = user_data[user_id]
+
+  # Handle daily missions
+    if "daily" not in user or can_claim(user["daily"]["last_claimed"], 24):
+        user["daily"] = {
+            "last_claimed": datetime.utcnow().isoformat(),
+            "missions": [random.choice(daily_pool)]
+        }
+
+    # Handle weekly missions
+    if "weekly" not in user or can_claim(user["weekly"]["last_claimed"], 24 * 7):
+        user["weekly"] = {
+            "last_claimed": datetime.utcnow().isoformat(),
+            "missions": [random.choice(weekly_pool)]
+        }
+        
+    user_data[user_id] = user
+    save_json(USER_DATA_FILE, user_data)
+
+    return user

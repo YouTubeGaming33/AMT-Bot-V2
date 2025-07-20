@@ -1,0 +1,50 @@
+{
+    "697528564358184991": {
+        "daily": {
+            "last_claimed": "2025-07-19T18:15:54.019724",
+            "missions": [
+                {
+                    "title": "A hard day's work.",
+                    "mission": "Fill 2 grass bags with garbage.",
+                    "reward": "40 Coins.",
+                    "timelimit": "**3 HOURS**"
+                }
+            ]
+        },
+        "weekly": {
+            "last_claimed": "2025-07-19T18:15:54.019752",
+            "missions": [
+                {
+                    "title": "Armour Plating.",
+                    "mission": "Make fifty Metal Plates.",
+                    "reward": "400 Coins.",
+                    "timelimit": "**One Week.**"
+                }
+            ]
+        }
+    },
+    "787129003873533973": {
+        "daily": {
+            "last_claimed": "2025-07-19T18:17:16.759180",
+            "missions": [
+                {
+                    "title": "Village Protector.",
+                    "mission": "Create a wooden shield. Any kind, all three shield pieces and a handle. you HAVE to make it yourself.\nYou keep the shield!\n",
+                    "reward": "50 Coins.",
+                    "timelimit": "**2 HOURS**"
+                }
+            ]
+        },
+        "weekly": {
+            "last_claimed": "2025-07-19T18:17:16.759196",
+            "missions": [
+                {
+                    "title": "Kentucky Fried Spriggull Connoisseur.",
+                    "mission": "Collect seventy five spriggull legs.",
+                    "reward": "200 Coins.",
+                    "timelimit": "**One Week.**"
+                }
+            ]
+        }
+    }
+}

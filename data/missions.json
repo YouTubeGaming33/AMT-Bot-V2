@@ -1,0 +1,230 @@
+[
+        {
+            "title": "Miners Heaven",
+            "mission": "Mine 100 copper.",
+            "reward": "50 Coins.",
+            "timelimit": "**3 HOURS**"
+        },
+        {
+            "title": "Redwood Mercenary.",
+            "mission": "Destroty goteras, bring back 25 spores.",
+            "reward": "25 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Chefs Delight.",
+            "mission": "Find 20 salt.",
+            "reward": "25 Coins.",
+            "timelimit": "**3 HOURS**"
+        },
+        {
+            "title": "Blacksmith with Skill",
+            "mission": "Forge a Great sword of any material. \n (10 ingots+)\n```diff\n\n\n- ONLY THE BLADE```",
+            "reward": "```diff\n\n\n+25 for iron/copper\n+50 for rediron.\n+25 for gold.\n+50 for electrum/viridium\n+100 for palladium\n+150 for valyan```",
+            "timelimit": "**4 HOURS**"
+        },
+        {
+            "title": "Farmer of Sorts.",
+            "mission": "Bring back:\n10 tomatos.\n10 eggplants.\n25 Blueberries.\n5 Apples.",
+            "reward": "50 Coins.",
+            "timelimit": "**6 HOURS**"
+        },
+        {
+            "title": "Redwood Warrior.",
+            "mission": "Create 5 kunai of Red iron(1 iron ingot + 1 copper ingot = 1 rediron)",
+            "reward": "25 Coins.",
+            "timelimit": "**3 HOURS**"
+        },
+        {
+            "title": "Birch Missionary.",
+            "mission": "Create a shortsword of copper.\n+ shortsword blade\n+ Handle\n+ Guard\n+ Pommel",
+            "reward": "50 Coins.",
+            "timelimit": "**3 HOURS**"
+        },
+        {
+            "title": "Hebios Collectionaire.",
+            "mission": "Find and bring back 40 hebios guards. (The little frog faced things at the Bandit camps.)",
+            "reward": "25 Coins.",
+            "timelimit": "**3 HOURS**"
+        },
+        {
+            "title": "Ironclad.",
+            "mission": "Mine 100 iron.",
+            "reward": "50 Coins.",
+            "timelimit": "**4 HOURS**"
+        },
+        {
+            "title": "NAKED SILVER.",
+            "mission": "Create a Silver Rapier.\n+ Handle\n+ Blade\n+ Pommel\n+ Guard",
+            "reward": "50 Coins.",
+            "timelimit": "**5 HOURS**"
+        },
+        {
+            "title": "Midas Touch.",
+            "mission": "Create a Golden Sickle.",
+            "reward": "50 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Friend of the Forge.",
+            "mission": "Forge 25 copper/iron ingots.",
+            "reward": "50 Coins.",
+            "timelimit": "**4 HOURS**"
+        },
+        {
+            "title": "Ash Assasin.",
+            "mission": "Bring back 15 turrabada eyes.",
+            "reward": "50 Coins.",
+            "timelimit": "**3 HOURS**"
+        },
+        {
+            "title": "A hard day's work.",
+            "mission": "Fill 2 grass bags with garbage.",
+            "reward": "40 Coins.",
+            "timelimit": "**3 HOURS**"
+        },
+        {
+            "title": "The Knight's Talisman.",
+            "mission": "Create a wooden shield.\n**YOU KEEP THIS.**",
+            "reward": "25 Coins.",
+            "timelimit": "**4 HOURS**"
+        },
+        {
+            "title": "DT's lil helper.",
+            "mission": " Create a health potion and give it to someone in need with proof.",
+            "reward": "50 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Our little worker.",
+            "mission": "Create a pickaxe of any material, You get to keep it. + handle.",
+            "reward": "25 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Chop Chop Chop.",
+            "mission": "Create a basic axe + handle, doesn't matter what material.\nYou keep it!",
+            "reward": "25 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Village Protector.",
+            "mission": "Create a wooden shield. Any kind, all three shield pieces and a handle. you HAVE to make it yourself.\nYou keep the shield!\n",
+            "reward": "50 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Carpenters Honey.",
+            "mission": "Chop 250 wood.",
+            "reward": "100 Coins.",
+            "timelimit": "**3 HOURS**"
+        },
+        {
+            "title": "Helpful Hand.",
+            "mission": "Create a leather bag.\nShow this to an admin, and then donate it to someone that still has a straw bag. If you can't find any, give it to the admin to delete.",
+            "reward": "50 Coins.",
+            "timelimit": "**4 HOURS**"
+        },
+        {
+            "title": "Craftsman.",
+            "mission": "Create 2 pouches.\n**YOU KEEP THIS.**",
+            "reward": "25 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Restaurant Worker.",
+            "mission": "Create 20 bowls.",
+            "reward": "50 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Ciceros Peasant.",
+            "mission": "Create 2 daggers. 2 handles + 2 blades + 2 pommels.",
+            "reward": "50 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Casino Worker.",
+            "mission": "Create 10 dice.",
+            "reward": "50 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Under the High King.",
+            "mission": "Create a Greatsword of any material. Handle + Guard + Blade.\n**YOU KEEP THIS.**",
+            "reward": "50 Coins.",
+            "timelimit": "**5 HOURS**"
+        },
+        {
+            "title": "Ivory Wine.",
+            "mission": "Cook 3 gourds of blueberry wine (4 blueberries) and serve them to the hungry.",
+            "reward": "30 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Apollo.",
+            "mission": "Create 3 bows.",
+            "reward": "40 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Ymir, king of Jotunheim.",
+            "mission": "Create a mythril axe (can be any axe).\n**YOU KEEP THIS.**",
+            "reward": "40 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "The Water Boy.",
+            "mission": "Fill up both tavern barrels with water.",
+            "reward": "20 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Forest Sentinel.",
+            "mission": "Bring back and store ten schmeechees (them little mushroom fellers).\nIn a chest/crate.",
+            "reward": "50 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Rhys Rapier.",
+            "mission": "Create a rapier.\n**YOU KEEP THIS.**",
+            "reward": "30 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Orc Jailer.",
+            "mission": "Make a spiked bat.\n**YOU KEEP THIS.**",
+            "reward": "20 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Hephaestus Apprentice.",
+            "mission": "Create a smithing hammer of value equal to or less than red iron.\n**YOU KEEP THIS.**",
+            "reward": "25 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Silencing the Banshee.",
+            "mission": "Kill a phantom.",
+            "reward": "50 Coins.",
+            "timelimit": "**4 HOURS**"
+        },
+        {
+            "title": "The wails of the Graveborn.",
+            "mission": "Create a scythe.\n**YOU KEEP THIS.**",
+            "reward": "25 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Mystery Liquid.",
+            "mission": "Fill up two gourds with teleport juice.",
+            "reward": "30 Coins.",
+            "timelimit": "**2 HOURS**"
+        },
+        {
+            "title": "Paladins Chosen.",
+            "mission": "Create a hammer (not the carpentry hammer or smithing hammer).\n**YOU KEEP THIS.**",
+            "reward": "25 Coins.",
+            "timelimit": "**2 HOURS**"
+        }
+    ]

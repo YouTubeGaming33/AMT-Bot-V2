@@ -25,6 +25,7 @@ class Tickets(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # Slash Command for Opening a Ticket.
     @app_commands.command(name="open-ticket", description="Opens a Support Ticket")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     @app_commands.choices(platform=[app_commands.Choice(name="PCVR", value="Platform: PCVR"), app_commands.Choice(name="Standalone", value="Platform: Standalone")])

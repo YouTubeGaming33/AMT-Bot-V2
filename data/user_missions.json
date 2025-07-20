@@ -1,13 +1,13 @@
 {
     "697528564358184991": {
         "daily": {
-            "last_claimed": "2025-07-19T18:15:54.019724",
+            "last_claimed": "2025-07-20T22:20:33.941115",
             "missions": [
                 {
-                    "title": "A hard day's work.",
-                    "mission": "Fill 2 grass bags with garbage.",
-                    "reward": "40 Coins.",
-                    "timelimit": "**3 HOURS**"
+                    "title": "Rhys Rapier.",
+                    "mission": "Create a rapier.\n**YOU KEEP THIS.**",
+                    "reward": "30 Coins.",
+                    "timelimit": "**2 HOURS**"
                 }
             ]
         },

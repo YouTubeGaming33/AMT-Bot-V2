@@ -19,15 +19,11 @@ def generate_warn_id(length=6):
 class Moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-    
-    # Slash Command for Warning a User.
-    import random
-    import string
-    from data.database import insert_warning
 
     def generate_warn_id(length=6):
         return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
     
+    # Slash Command for Purging Messages.
     @app_commands.command(name="purge", description="Purge messages")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     @app_commands.describe(amount="Amount of Messages to Delete")
@@ -45,6 +41,7 @@ class Moderation(commands.Cog):
         deleted = await interaction.channel.purge(limit=amount)
         await interaction.followup.send(f"{len(deleted)} Messages Deleted", ephemeral=True)
 
+    # Pulls Warnings for a Member, if applicable.
     @app_commands.command(name="warnings", description="Check how many warnings a user has")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     @app_commands.describe(member="The member whose warnings you want to check")
@@ -104,6 +101,7 @@ class Moderation(commands.Cog):
 
         await interaction.followup.send(embed=embed, ephemeral=True)
 
+    # Slash Command for Warning a User - Saves to DB allowing for later pull.
     @app_commands.command(name="warn", description="Warn a user")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     async def warn(self, interaction: discord.Interaction, member: discord.Member, reason: str = None):
@@ -243,6 +241,7 @@ class Moderation(commands.Cog):
 
             await mod_log.send(embed=embed)
 
+    # Slash Command for Kick, includes member and reason.
     @app_commands.command(name="kick", description="Kicks a User")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     @app_commands.describe(member="Member to Kick", reason="Reason for the Kick")
@@ -288,6 +287,7 @@ class Moderation(commands.Cog):
             )
 
             await mod_log.send(embed=embed)
+
 # Adds Cog to AMT Bots Class.
 async def setup(bot):
     await bot.add_cog(Moderation(bot))

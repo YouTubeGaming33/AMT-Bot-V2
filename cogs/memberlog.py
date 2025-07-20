@@ -1,12 +1,15 @@
+# Import Required Discord Libary and Import(s).
 import discord
 from discord.ext import commands
 from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
 
+# Class for MemberLogger Cog.
 class MemberLogger(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # Member Join Listener - Sends Embed for Member to Log; Includes Name, Profile Picture and Age.
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
         embed = discord.Embed(
@@ -32,6 +35,7 @@ class MemberLogger(commands.Cog):
         if joinleave_log:
             await joinleave_log.send(embed=embed)
 
+    # Member Leave Listener - Sends Embed for Member to Log; Includes Roles, Name, Profile Picture and Age.
     @commands.Cog.listener()
     async def on_member_remove(self, member: discord.Member):
         embed = discord.Embed(
@@ -61,5 +65,6 @@ class MemberLogger(commands.Cog):
         if joinleave_log:
             await joinleave_log.send(embed=embed)
 
+# Adds Cog to AMT Bot Class.
 async def setup(bot):
     await bot.add_cog(MemberLogger(bot))

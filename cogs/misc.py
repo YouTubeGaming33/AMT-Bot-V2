@@ -5,10 +5,12 @@ from discord import app_commands
 
 from config import GUILD_ID
 
+# Class for Misc Cog.
 class Misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
+    # Slash Command for Providing Information for Helping Users.
     @app_commands.command(name="help", description="Provides Information to get Help")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     async def help(self, interaction: discord.Interaction):

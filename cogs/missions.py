@@ -7,10 +7,12 @@ from datetime import datetime, timedelta
 from data.database import assign_missions
 from config import GUILD_ID
 
+# Class for Missions Cog.
 class Missions(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # Slash Command for Daily Mission - Sets a 24 Hour "Timer" (Compares Date/Time from previous run of Command)
     @app_commands.command(name="daily", description="View your daily missions")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     async def daily(self, interaction: discord.Interaction):
@@ -54,6 +56,7 @@ class Missions(commands.Cog):
 
         await interaction.followup.send(embed=embed, ephemeral=True)
 
+    # Slash Command for Weekly Missions.
     @app_commands.command(name="weekly", description="View your weekly missions")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     async def weekly(self, interaction: discord.Interaction):
@@ -98,6 +101,6 @@ class Missions(commands.Cog):
         await interaction.followup.send(embed=embed, ephemeral=True)
 
 
-# Adds Cog to Bot
+# Adds Cog to AMT Bot Class.
 async def setup(bot):
     await bot.add_cog(Missions(bot))

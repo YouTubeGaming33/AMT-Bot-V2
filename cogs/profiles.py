@@ -11,6 +11,7 @@ class Profiles(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    # Slash Command for Updating Member.interaction profile.
     @app_commands.command(name="update_profile", description="Update your profile info")
     @app_commands.describe(device="Platform you play on.",description="Description of Yourself.",username="Username.",pronouns="Your Pronouns.")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
@@ -29,7 +30,7 @@ class Profiles(commands.Cog):
             ephemeral=True
         )
 
-
+    # Pulls either Member.interaction Profile or another Users Profile.
     @app_commands.command(name="profile", description="View your or another user's profile.")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
     @app_commands.describe(user="The user to view (optional)")
@@ -37,10 +38,11 @@ class Profiles(commands.Cog):
         user = user or interaction.user
         profile = get_profile(user.id)
         if not profile:
+            create_profile(user_id=user)
             await interaction.response.send_message(f"No profile found for {user.display_name}.", ephemeral=True)
             return
 
-        # Build a neat embed to display profile info
+        # Build a neat embed to display profile info.
         embed = discord.Embed(
             title=f"{profile.get('Name', user.display_name)}'s Profile",
             colour=discord.Colour.purple()
@@ -52,6 +54,6 @@ class Profiles(commands.Cog):
         embed.set_thumbnail(url=user.display_avatar.url)
         await interaction.response.send_message(embed=embed)
 
-# Adds Cog to AMT Bot's Class.
+# Adds Cog to AMT Bot Class.
 async def setup(bot):
     await bot.add_cog(Profiles(bot))

@@ -16,6 +16,7 @@ profiles_collection = db["profiles"]
 warnings_collection = db["warnings"]
 autoresponders_collection = db["auto-responders"]
 levelling_collection = db["levels"]
+bounties_collection = db["bounties"]
 
 def get_achievements(user_id: int):
     profile = profiles_collection.find_one({"User": str(user_id)})

@@ -55,7 +55,7 @@ class Profiles(commands.Cog):
         # ✅ Add Achievements section
         achievements = profile.get("Achievements", [])
         achievement_text = "\n".join([f"• {a}" for a in achievements]) if achievements else "*No achievements yet!*"
-        embed.add_field(name="🏆 Achievements", value=achievement_text, inline=False)
+        embed.add_field(name="🏆 Levels:", value=achievement_text, inline=False)
 
         embed.set_footer(
             text="A Mythical Tale", 

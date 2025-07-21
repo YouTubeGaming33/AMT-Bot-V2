@@ -15,6 +15,51 @@ db = client["test"]
 profiles_collection = db["profiles"]
 warnings_collection = db["warnings"]
 autoresponders_collection = db["auto-responders"]
+levelling_collection = db["levels"]
+
+def get_achievements(user_id: int):
+    profile = profiles_collection.find_one({"User": str(user_id)})
+    if profile:
+        return profile.get("Achievements", [])
+    return []
+
+def add_achievement(user_id: int, achievement: str):
+    print(f"Attempting to add achievement '{achievement}' for user {user_id}")
+    profile = profiles_collection.find_one({"User": str(user_id)})
+    if not profile:
+        create_profile(user_id)
+
+    # Prevent duplicates
+    achievements = profile.get("Achievements", [])
+    if achievement not in achievements:
+        achievements.append(achievement)
+        profiles_collection.update_one(
+            {"User": str(user_id)},
+            {"$set": {"Achievements": achievements}}
+        )
+
+def create_level(user_id: int, xp: int, level: int, achievements: list = None):
+
+    level_data = {
+        "User": str(user_id),
+        "XP": xp,
+        "Level": level,
+    }
+    levelling_collection.insert_one(level_data)
+    return True
+
+def get_level(user_id: int):
+    return levelling_collection.find_one({"User": str(user_id)})
+
+def update_level(user_id: int, xp: int, level: int):
+    result = levelling_collection.update_one(
+        {"User": str(user_id)},
+        {"$set": {
+            "XP": xp,
+            "Level": level
+        }}
+    )
+    return result.modified_count > 0
 
 def responder(listener: str):
     return autoresponders_collection.find_one({"Listener": str(listener)})

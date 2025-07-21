@@ -59,8 +59,19 @@ class Bounty(commands.Cog):
                 await interaction.followup.send("❌ Could not find the request channel.", ephemeral=True)
                 return
 
+            # Send embed and store message ID for later deletion
+            message = await request_channel.send(embed=embed)
+
+            # Update bounty document with message and channel IDs
+            self.bounties_collection.update_one(
+                {"bounty_id": bounty_id},
+                {"$set": {
+                    "announcement_message_id": message.id,
+                    "announcement_channel_id": request_id
+                }}
+            )
+
             await interaction.followup.send(f"Bounty #{bounty_id} set successfully!", ephemeral=True)
-            await request_channel.send(embed=embed)
 
         except Exception as e:
             await interaction.followup.send(f"❌ An unexpected error occurred: {e}", ephemeral=True)
@@ -101,6 +112,47 @@ class Bounty(commands.Cog):
             f"✅ You have successfully claimed bounty #{bounty_id}!",
             ephemeral=True
         )
+
+    @app_commands.command(name="close-bounty", description="Close a bounty once it's completed")
+    @app_commands.guilds(discord.Object(id=GUILD_ID))
+    @app_commands.describe(bounty_id="The ID of the bounty to close")
+    async def close_bounty(self, interaction: discord.Interaction, bounty_id: int):
+        bounty = self.bounties_collection.find_one({"bounty_id": bounty_id})
+
+        if not bounty:
+            await interaction.response.send_message(f"❌ Bounty with ID {bounty_id} does not exist.", ephemeral=True)
+            return
+
+        if bounty.get("claimed"):
+            await interaction.response.send_message(f"✅ Bounty #{bounty_id} is already closed.", ephemeral=True)
+            return
+
+        # Optionally: Only the bounty creator or moderators can close the bounty
+        if interaction.user.id != bounty["creator_id"]:
+            # You could check moderator roles here instead if you want
+            await interaction.response.send_message("❌ Only the bounty creator can close this bounty.", ephemeral=True)
+            return
+
+        # Mark bounty as claimed/closed (closed but unclaimed, or add a closed flag)
+        self.bounties_collection.update_one(
+            {"bounty_id": bounty_id},
+            {"$set": {"claimed": True, "closed_at": datetime.datetime.utcnow()}}
+        )
+
+        # Try to delete the announcement message embed
+        channel_id = bounty.get("announcement_channel_id")
+        message_id = bounty.get("announcement_message_id")
+        if channel_id and message_id:
+            channel = interaction.guild.get_channel(channel_id)
+            if channel:
+                try:
+                    message = await channel.fetch_message(message_id)
+                    await message.delete()
+                except (discord.NotFound, discord.Forbidden):
+                    # Message not found or no permission to delete; ignore silently
+                    pass
+
+        await interaction.response.send_message(f"✅ Bounty #{bounty_id} has been successfully closed and announcement removed.", ephemeral=True)
 
 # Adds Cog to AMT Bots Class.
 async def setup(bot):

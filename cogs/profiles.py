@@ -52,10 +52,9 @@ class Profiles(commands.Cog):
         embed.add_field(name="Description:", value=profile.get("Description", "Not set"), inline=False)
         embed.add_field(name="Pronouns:", value=profile.get("Pronouns", "Not set"), inline=False)
 
-        # ✅ Add Achievements section
         achievements = profile.get("Achievements", [])
         achievement_text = "\n".join([f"• {a}" for a in achievements]) if achievements else "*No achievements yet!*"
-        embed.add_field(name="🏆 Levels:", value=achievement_text, inline=False)
+        embed.add_field(name="Levels:", value=achievement_text, inline=False)
 
         embed.set_footer(
             text="A Mythical Tale", 

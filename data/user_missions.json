@@ -46,5 +46,29 @@
                 }
             ]
         }
+    },
+    "477616538619346944": {
+        "daily": {
+            "last_claimed": "2025-07-20T22:41:55.211073",
+            "missions": [
+                {
+                    "title": "Midas Touch.",
+                    "mission": "Create a Golden Sickle.",
+                    "reward": "50 Coins.",
+                    "timelimit": "**2 HOURS**"
+                }
+            ]
+        },
+        "weekly": {
+            "last_claimed": "2025-07-20T22:41:55.211178",
+            "missions": [
+                {
+                    "title": "Armour Plating.",
+                    "mission": "Make fifty Metal Plates.",
+                    "reward": "400 Coins.",
+                    "timelimit": "**One Week.**"
+                }
+            ]
+        }
     }
 }

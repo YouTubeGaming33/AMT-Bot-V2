@@ -182,6 +182,52 @@ class Moderation(commands.Cog):
         )
 
 
+    # Slash command for Banning.
+    @app_commands.command(name="ban", description="Ban a User")
+    @app_commands.guilds(discord.Object(id=GUILD_ID))
+    @app_commands.describe(member="Member to Ban", reason="Reason for the Ban")
+    async def ban(self, interaction: discord.Interaction, member: discord.Member, reason: str = None):
+        await interaction.response.defer(ephemeral=True)
+        user_roles = [role.id for role in interaction.user.roles]
+        
+        admin_role = 927724509522432031
+
+        # Check if the user has one of the allowed roles
+        if admin_role not in user_roles:
+            await interaction.followup.send("🚫 You don't have permission to use this command.", ephemeral=True)
+            return
+
+        # If Member is the Interaction User, Don't Allow.
+        if member == interaction.user:
+            await interaction.followup.send("❌You can't ban yourself.", ephemeral=True)
+            return
+        
+        # If Members Role is not Above The Interaction Users Role, Don't Allow.
+        if member.top_role >= interaction.user.top_role:
+            await interaction.followup.send("❌You can't ban someone with a higher or equal role.", ephemeral=True)
+            return
+
+        await member.ban(reason=reason)
+
+        await interaction.followup.send(f"{member.mention} was Banned for {reason}")
+
+        MOD_LOG_ID = 1395444039339217108
+        mod_log = interaction.guild.get_channel(MOD_LOG_ID)
+
+        if mod_log:
+            embed = discord.Embed(
+                title="**User Banned**",
+                description=(
+                f"**User:** {member} ({member.id})\n"
+                f"**Moderator:** {interaction.user} ({interaction.user.id})\n"
+                f"**Reason:** - {reason}\n"
+                f"**Date:** {discord.utils.format_dt(datetime.utcnow(), style='F')}\n\n"
+                f"A Mythical Tale"),
+                colour=discord.Colour.orange()
+            )
+
+            await mod_log.send(embed=embed)
+
     # Slash Command for Timeout.
     @app_commands.command(name="timeout", description="Timesout a User")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
@@ -189,11 +235,12 @@ class Moderation(commands.Cog):
     async def timeout(self, interaction: discord.Interaction, member: discord.Member, minutes:int, reason: str = None):
         user_roles = [role.id for role in interaction.user.roles]
 
+        trial_admin_role = 935793809437098034
         admin_role = 927724509522432031
 
-        # Check if the user has one of the allowed role.
-        if admin_role not in user_roles:
-            await interaction.response.send_message("🚫 You don't have permission to use this command.", ephemeral=True)
+        # Check if the user has one of the allowed roles
+        if trial_admin_role not in user_roles and admin_role not in user_roles:
+            await interaction.followup.send("🚫 You don't have permission to use this command.", ephemeral=True)
             return
 
         # If Member is the Interaction User, Don't Allow.
@@ -249,11 +296,10 @@ class Moderation(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         user_roles = [role.id for role in interaction.user.roles]
         
-        trial_admin_role = 935793809437098034
         admin_role = 927724509522432031
 
         # Check if the user has one of the allowed roles
-        if trial_admin_role not in user_roles and admin_role not in user_roles:
+        if admin_role not in user_roles:
             await interaction.followup.send("🚫 You don't have permission to use this command.", ephemeral=True)
             return
 

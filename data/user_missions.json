@@ -70,5 +70,29 @@
                 }
             ]
         }
+    },
+    "581564308689911813": {
+        "daily": {
+            "last_claimed": "2025-07-23T16:23:21.861593",
+            "missions": [
+                {
+                    "title": "Apollo.",
+                    "mission": "Create 3 bows.",
+                    "reward": "40 Coins.",
+                    "timelimit": "**2 HOURS**"
+                }
+            ]
+        },
+        "weekly": {
+            "last_claimed": "2025-07-23T16:23:21.861655",
+            "missions": [
+                {
+                    "title": "Notorious Ninja. \ud83e\udd77",
+                    "mission": "Collect seventy five kunais.",
+                    "reward": "350 Coins.",
+                    "timelimit": "**One Week.**"
+                }
+            ]
+        }
     }
 }

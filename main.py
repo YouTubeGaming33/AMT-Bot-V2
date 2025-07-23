@@ -31,6 +31,8 @@ class AMTBot(commands.Bot):
         try:
             synced = await self.tree.sync(guild=GUILD_ID)
             print(f"Successfully Synced {len(synced)} Command(s)")
+            global_synced = await self.tree.sync()
+            print (f"Successfully Synced {len(global_synced)} Command(s)")
         except Exception as e:
             print(f"Failed to Sync Commands: {e}")
 

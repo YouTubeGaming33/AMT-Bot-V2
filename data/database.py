@@ -17,6 +17,17 @@ warnings_collection = db["warnings"]
 autoresponders_collection = db["auto-responders"]
 levelling_collection = db["levels"]
 bounties_collection = db["bounties"]
+listings_collection = db["listings"]
+
+def save_listing(listing_data: dict):
+    listings_collection.insert_one(listing_data)
+
+def get_listing_by_message_id(message_id: int):
+    return listings_collection.find_one({"message_id": message_id})
+
+def delete_listing_by_message_id(message_id: int):
+    listings_collection.delete_one({"message_id": message_id})
+
 
 def get_achievements(user_id: int):
     profile = profiles_collection.find_one({"User": str(user_id)})

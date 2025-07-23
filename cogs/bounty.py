@@ -124,7 +124,7 @@ class Bounty(commands.Cog):
             return
 
         if bounty.get("claimed"):
-            await interaction.response.send_message(f"✅ Bounty #{bounty_id} is already closed.", ephemeral=True)
+            await interaction.response.send_message(f"✅ Bounty #{bounty_id} has been closed.", ephemeral=True)
             return
 
         # Optionally: Only the bounty creator or moderators can close the bounty

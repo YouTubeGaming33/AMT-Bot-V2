@@ -10,3 +10,6 @@ MONGO_URI = os.getenv("MONGO_URI")
 
 # Guild ID for AMT Server
 GUILD_ID = 925867675513659473
+
+# Staff IDs
+STAFF = []

@@ -15,7 +15,7 @@ class Profiles(commands.Cog):
     @app_commands.command(name="update_profile", description="Update your profile info")
     @app_commands.describe(device="Platform you play on.",description="Description of Yourself.",username="Username.",pronouns="Your Pronouns.")
     @app_commands.guilds(discord.Object(id=GUILD_ID))
-    @app_commands.choices(device=[app_commands.Choice(name="Standalone", value="Standalone"),app_commands.Choice(name="PCVR", value="PCVR")])
+    @app_commands.choices(device=[app_commands.Choice(name="Standalone", value="Standalone"),app_commands.Choice(name="PCVR", value="PCVR"),app_commands.Choice(name="Standalone & PCVR", value="Standalone & PCVR")])
     async def update_profile(self,interaction: discord.Interaction, device: app_commands.Choice[str], description: str, username: str, pronouns: str):
         user_id = interaction.user.id
 
